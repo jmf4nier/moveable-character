@@ -12,6 +12,7 @@ character.style.position = 'absolute'
 character.style.left = '0px'
 character.style.bottom = '0px'
 
+
 // Set the src of the img so the browser knows what to show
 character.src = `${ASSET_ROOT}/static.gif`
 
@@ -22,7 +23,7 @@ document.body.append(character)
 let direction = null
 
 // Define a variable to reperesent the speed of our character
-let speed = 5
+let speed = 1
 
 // Have someone at your table do some research on  setInterval- what is it doing?
 setInterval(function(){
@@ -31,6 +32,7 @@ setInterval(function(){
     // If we want to do some arithmatic, we'll need to parse them into integers:
     const left = parseInt(character.style.left)
     const bottom = parseInt(character.style.bottom)
+    
 
     // If the character is moving right, the distance between him and the left side of the screen should increase
     // What is speed?
@@ -39,6 +41,16 @@ setInterval(function(){
     }
 
     // Account for other directions here:
+    if(direction == 'left'){
+        character.style.left = `${left-speed}px`
+    }
+    if(direction == 'up'){
+        character.style.bottom = `${bottom+speed}px`
+    }
+    if(direction == 'down'){
+        character.style.bottom = `${bottom-speed}px`
+    }
+    
 
 }, 20) // <- What is this number?
 
@@ -54,15 +66,19 @@ function walkRight(){
 // Finish the functions below:
 
 function walkLeft(){
-
+    character.src = `${ASSET_ROOT}/walkleft.gif`
+    direction = 'left'
 }
 
 function walkUp(){
-
+    character.src = `${ASSET_ROOT}/walkup.gif`
+    direction = 'up'
 }
 
-function walkDown(){
 
+function walkDown(){
+    character.src = `${ASSET_ROOT}/walkdown.gif`
+    direction = 'down'
 }
 
 function stop(){
